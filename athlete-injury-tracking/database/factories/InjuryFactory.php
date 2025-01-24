@@ -13,7 +13,7 @@ class InjuryFactory extends Factory
     public function definition()
     {
         return [
-            'athlete_id' => Athlete::factory(),
+            'athlete_id' => Athlete::all()->random()->id,
             'description' => $this->faker->sentence(),
             'injury_date' => $this->faker->date(),
             'follow_up_date' => $this->faker->date(),
