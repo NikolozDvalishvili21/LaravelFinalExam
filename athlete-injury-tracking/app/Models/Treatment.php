@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Treatment extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['injury_id', 'treatment_type', 'treatment_date', 'notes'];
+
+    // Treatment belongs to an injury
+    public function injury()
+    {
+        return $this->belongsTo(Injury::class);
+    }
+}
+
