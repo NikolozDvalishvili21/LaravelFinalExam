@@ -22,4 +22,10 @@ class Injury extends Model
     {
         return $this->hasMany(Treatment::class);
     }
+
+    public function ratings()
+    {
+        return $this->morphMany(Rating::class, 'rateable');
+    }
+
 }

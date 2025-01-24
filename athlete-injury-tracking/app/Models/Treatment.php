@@ -16,5 +16,11 @@ class Treatment extends Model
     {
         return $this->belongsTo(Injury::class);
     }
+
+    public function ratings()
+    {
+        return $this->morphMany(Rating::class, 'rateable');
+    }
+
 }
 

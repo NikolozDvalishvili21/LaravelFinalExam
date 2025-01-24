@@ -11,6 +11,12 @@ class Athlete extends Model
 
     protected $fillable = ['name', 'sport', 'email'];
 
+    public function ratings()
+    {
+        return $this->morphMany(Rating::class, 'rateable');
+    }
+
+
     // Athlete has many injuries
     public function injuries()
     {

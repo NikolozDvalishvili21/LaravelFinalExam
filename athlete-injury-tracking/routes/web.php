@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\InjuryController;
 use App\Http\Controllers\TreatmentController;
+use App\Http\Controllers\RatingController;
 
 Route::get('sendReminder/{athleteId}/{treatmentId}', [TreatmentController::class, 'sendReminder']);
 
@@ -31,3 +32,6 @@ Route::get('treatments/{id}', [TreatmentController::class, 'show'])->name('treat
 Route::put('treatments/{id}', [TreatmentController::class, 'update'])->name('treatments.update');
 Route::delete('treatments/{id}', [TreatmentController::class, 'destroy'])->name('treatments.destroy');
 
+
+Route::get('{type}/{id}/ratings', [RatingController::class, 'index'])->name('ratings.index');
+Route::post('{type}/{id}/ratings', [RatingController::class, 'store'])->name('ratings.store');
