@@ -6,8 +6,8 @@ use App\Http\Controllers\InjuryController;
 use App\Http\Controllers\TreatmentController;
 use App\Http\Controllers\RatingController;
 
+// Email Sending Routes
 Route::get('sendReminder/{athleteId}/{treatmentId}', [TreatmentController::class, 'sendReminder']);
-
 
 // Athlete Routes
 Route::get('athletes', [AthleteController::class, 'index'])->name('athletes.index');
@@ -32,6 +32,6 @@ Route::get('treatments/{id}', [TreatmentController::class, 'show'])->name('treat
 Route::put('treatments/{id}', [TreatmentController::class, 'update'])->name('treatments.update');
 Route::delete('treatments/{id}', [TreatmentController::class, 'destroy'])->name('treatments.destroy');
 
-
+// Ratings Routes
 Route::get('{type}/{id}/ratings', [RatingController::class, 'index'])->name('ratings.index');
 Route::post('{type}/{id}/ratings', [RatingController::class, 'store'])->name('ratings.store');
