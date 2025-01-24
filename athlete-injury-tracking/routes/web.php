@@ -5,6 +5,9 @@ use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\InjuryController;
 use App\Http\Controllers\TreatmentController;
 
+Route::get('sendReminder/{athleteId}/{treatmentId}', [TreatmentController::class, 'sendReminder']);
+
+
 // Athlete Routes
 Route::get('athletes', [AthleteController::class, 'index'])->name('athletes.index');
 Route::post('athletes', [AthleteController::class, 'store'])->name('athletes.store');

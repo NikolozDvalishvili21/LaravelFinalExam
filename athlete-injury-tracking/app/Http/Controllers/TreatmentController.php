@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Athlete;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TreatmentReminder;
+
 
 class TreatmentController extends Controller
 {
@@ -80,5 +84,22 @@ class TreatmentController extends Controller
         $treatment->delete();
 
         return response()->json(['message' => 'Treatment deleted successfully!'], 200);
+    }
+
+    public function sendReminder($athleteId, $treatmentId)
+    {
+        // Find the athlete and treatment
+        $athlete = Athlete::find($athleteId);  // Assuming you have the Athlete model
+        $treatment = Treatment::find($treatmentId);
+
+        // Check if both athlete and treatment exist
+        if ($athlete && $treatment) {
+            // Send the email to the athlete
+            Mail::to($athlete->email)->send(new TreatmentReminder($athlete, $treatment));
+
+            return response()->json(['message' => 'Treatment reminder sent!']);
+        }
+
+        return response()->json(['message' => 'Athlete or treatment not found.'], 404);
     }
 }
