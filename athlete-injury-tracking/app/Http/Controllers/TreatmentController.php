@@ -7,6 +7,7 @@ use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TreatmentReminder;
+use App\Http\Requests\StoreTreatmentRequest;
 
 
 class TreatmentController extends Controller
@@ -19,17 +20,12 @@ class TreatmentController extends Controller
     }
 
     // Store a new treatment
-    public function store(Request $request)
+    public function store(StoreTreatmentRequest $request)
     {
-        $validated = $request->validate([
-            'description' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-            'injury_id' => 'required|exists:injuries,id', // Ensure injury exists
-        ]);
-
+        $validated = $request->validated();
+    
         $treatment = Treatment::create($validated);
-
+    
         return response()->json([
             'message' => 'Treatment created successfully!',
             'data' => $treatment,
