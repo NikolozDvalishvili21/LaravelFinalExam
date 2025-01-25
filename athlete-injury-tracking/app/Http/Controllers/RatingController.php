@@ -10,7 +10,18 @@ use App\Models\Rating;
 
 class RatingController extends Controller
 {
-    // List all ratings for a given resource
+    private function getModel($type)
+    {
+        $models = [
+            'athletes' => Athlete::class,
+            'injuries' => Injury::class,
+            'treatments' => Treatment::class,
+        ];
+
+        return $models[$type] ?? null;
+    }
+
+
     public function index($type, $id)
     {
         $model = $this->getModel($type);
@@ -28,7 +39,6 @@ class RatingController extends Controller
         return response()->json($resource->ratings, 200);
     }
 
-    // Add a new rating for a given resource
     public function store(Request $request, $type, $id)
     {
         $model = $this->getModel($type);
@@ -55,15 +65,5 @@ class RatingController extends Controller
         ], 201);
     }
 
-    // Helper function to resolve the model type
-    private function getModel($type)
-    {
-        $models = [
-            'athletes' => Athlete::class,
-            'injuries' => Injury::class,
-            'treatments' => Treatment::class,
-        ];
 
-        return $models[$type] ?? null;
-    }
 }

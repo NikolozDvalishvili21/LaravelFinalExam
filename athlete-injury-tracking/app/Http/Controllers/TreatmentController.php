@@ -12,14 +12,12 @@ use App\Http\Requests\StoreTreatmentRequest;
 
 class TreatmentController extends Controller
 {
-    // List all treatments
     public function index()
     {
-        $treatments = Treatment::with('injury')->get(); // Eager load injury relationship
+        $treatments = Treatment::with('injury')->get(); // Eager load 
         return response()->json($treatments, 200);
     }
 
-    // Store a new treatment
     public function store(StoreTreatmentRequest $request)
     {
         $validated = $request->validated();
@@ -32,7 +30,6 @@ class TreatmentController extends Controller
         ], 201);
     }
 
-    // Show details of a single treatment
     public function show($id)
     {
         $treatment = Treatment::with('injury')->find($id);
@@ -44,7 +41,6 @@ class TreatmentController extends Controller
         return response()->json($treatment, 200);
     }
 
-    // Update an existing treatment
     public function update(Request $request, $id)
     {
         $treatment = Treatment::find($id);
@@ -68,7 +64,6 @@ class TreatmentController extends Controller
         ], 200);
     }
 
-    // Delete a treatment
     public function destroy($id)
     {
         $treatment = Treatment::find($id);
@@ -85,12 +80,10 @@ class TreatmentController extends Controller
     public function sendReminder($athleteId, $treatmentId)
     {
         // Find the athlete and treatment
-        $athlete = Athlete::find($athleteId);  // Assuming you have the Athlete model
+        $athlete = Athlete::find($athleteId);  
         $treatment = Treatment::find($treatmentId);
 
-        // Check if both athlete and treatment exist
         if ($athlete && $treatment) {
-            // Send the email to the athlete
             Mail::to($athlete->email)->send(new TreatmentReminder($athlete, $treatment));
 
             return response()->json(['message' => 'Treatment reminder sent!']);

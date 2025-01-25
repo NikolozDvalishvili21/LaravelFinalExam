@@ -11,7 +11,6 @@ class Treatment extends Model
 
     protected $fillable = ['injury_id', 'treatment_type', 'treatment_date', 'notes'];
 
-    // Treatment belongs to an injury
     public function injury()
     {
         return $this->belongsTo(Injury::class);

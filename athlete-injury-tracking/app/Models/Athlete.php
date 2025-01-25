@@ -17,7 +17,6 @@ class Athlete extends Model
     }
 
 
-    // Athlete has many injuries
     public function injuries()
     {
         return $this->hasMany(Injury::class);

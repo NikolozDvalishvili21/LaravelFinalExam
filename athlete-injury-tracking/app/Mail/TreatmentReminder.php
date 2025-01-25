@@ -20,6 +20,6 @@ class TreatmentReminder extends Mailable
     public function build()
     {
         return $this->subject('Reminder: Upcoming Treatment')
-                    ->view('emails.treatment_reminder');  // You need to create this view
+                    ->view('emails.treatment_reminder');  
     }
 }

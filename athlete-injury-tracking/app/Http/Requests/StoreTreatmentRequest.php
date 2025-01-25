@@ -26,9 +26,9 @@ class StoreTreatmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'injury_id' => 'required|exists:injuries,id',  // Validating if injury_id exists in injuries table
+            'injury_id' => 'required|exists:injuries,id',  
             'treatment_type' => 'required|string|max:255',
-            'treatment_date' => 'required|date|before_or_equal:today',  // Treatment must be before or equal to today
+            'treatment_date' => 'required|date|before_or_equal:today',  
             'notes' => 'nullable|string',
         ];
     }

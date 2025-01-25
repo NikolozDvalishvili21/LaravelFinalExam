@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 
 class AthleteController extends Controller
 {
-    // Fetch all athletes
     public function index()
     {
         return response()->json(Athlete::all(), 200);
     }
 
-    // Store a new athlete
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -27,7 +25,6 @@ class AthleteController extends Controller
         return response()->json(['message' => 'Athlete created successfully!', 'data' => $athlete], 201);
     }
 
-    // Show details of a single athlete
     public function show($id)
     {
         $athlete = Athlete::find($id);
@@ -39,7 +36,6 @@ class AthleteController extends Controller
         return response()->json($athlete, 200);
     }
 
-    // Update an athlete's details
     public function update(Request $request, $id)
     {
         $athlete = Athlete::find($id);
@@ -59,7 +55,6 @@ class AthleteController extends Controller
         return response()->json(['message' => 'Athlete updated successfully!', 'data' => $athlete], 200);
     }
 
-    // Delete an athlete
     public function destroy($id)
     {
         $athlete = Athlete::find($id);
