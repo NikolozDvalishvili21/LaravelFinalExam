@@ -21,7 +21,6 @@ Route::prefix('api')->group(function () {
     Route::get('/injuries', [InjuryController::class, 'index']);
     Route::post('/injuries', [InjuryController::class, 'store']);
     Route::get('/injuries/{id}', [InjuryController::class, 'show']);
-    Route::put('/injuries/{id}', [InjuryController::class, 'update']);
     Route::delete('/injuries/{id}', [InjuryController::class, 'destroy']);
 });
 
@@ -29,7 +28,6 @@ Route::prefix('api')->group(function () {
 Route::get('treatments', [TreatmentController::class, 'index'])->name('treatments.index');
 Route::post('treatments', [TreatmentController::class, 'store'])->name('treatments.store');
 Route::get('treatments/{id}', [TreatmentController::class, 'show'])->name('treatments.show');
-Route::put('treatments/{id}', [TreatmentController::class, 'update'])->name('treatments.update');
 Route::delete('treatments/{id}', [TreatmentController::class, 'destroy'])->name('treatments.destroy');
 
 // Ratings Routes

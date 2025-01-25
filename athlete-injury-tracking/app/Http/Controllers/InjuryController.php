@@ -36,24 +36,7 @@ class InjuryController extends Controller
         return response()->json($injury, 200);
     }
 
-    public function update(Request $request, $id)
-    {
-        $injury = Injury::find($id);
 
-        if (!$injury) {
-            return response()->json(['message' => 'Injury not found'], 404);
-        }
-
-        $validated = $request->validate([
-            'description' => 'sometimes|string|max:255',
-            'date' => 'sometimes|date',
-            'athlete_id' => 'sometimes|exists:athletes,id',
-        ]);
-
-        $injury->update($validated);
-
-        return response()->json(['message' => 'Injury updated successfully!', 'data' => $injury], 200);
-    }
 
     public function destroy($id)
     {

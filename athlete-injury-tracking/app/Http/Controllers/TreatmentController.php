@@ -41,28 +41,6 @@ class TreatmentController extends Controller
         return response()->json($treatment, 200);
     }
 
-    public function update(Request $request, $id)
-    {
-        $treatment = Treatment::find($id);
-
-        if (!$treatment) {
-            return response()->json(['message' => 'Treatment not found'], 404);
-        }
-
-        $validated = $request->validate([
-            'description' => 'sometimes|string|max:255',
-            'start_date' => 'sometimes|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
-            'injury_id' => 'sometimes|exists:injuries,id',
-        ]);
-
-        $treatment->update($validated);
-
-        return response()->json([
-            'message' => 'Treatment updated successfully!',
-            'data' => $treatment,
-        ], 200);
-    }
 
     public function destroy($id)
     {
